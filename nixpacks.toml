@@ -8,7 +8,7 @@ cmds = ['npm ci']
 cmds = ['mkdir -p /app/storage']
 
 [start]
-cmd = 'mkdir -p /app/storage && npm run init && npm run start'
+cmd = 'mkdir -p /app/storage && node ./bin/db init --dbname $DATA_BASE --dbhost $RDS_HOST --dbuser $RDS_USERNAME --dbpassword $RDS_PASSWORD --dbport $RDS_PORT --force || true && npm run start'
 
 [variables]
 STORAGE_DIR = '/app/storage'
