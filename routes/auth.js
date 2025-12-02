@@ -39,6 +39,17 @@ router.post('/logout', (req, res) => {
   res.send("ok");
 });
 
+// CLI authentication endpoint
+router.get('/authenticated', (req, res, next) => {
+  var middleware = require('../core/middleware');
+  middleware.checkToken(req, res, (err) => {
+    if (err) {
+      return res.status(401).send({authenticated: false});
+    }
+    res.send({authenticated: true});
+  });
+});
+
 router.post('/login', (req, res, next) => {
   var AppError = require('../core/app-error');
   var accountManager = require('../core/services/account-manager')();
