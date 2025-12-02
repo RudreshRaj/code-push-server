@@ -19,7 +19,7 @@ router.get('/update_check', (req, res, next) => {
   log.debug('req.query', req.query);
   clientManager.updateCheckFromCache(deploymentKey, appVersion, label, packageHash, clientUniqueId)
   .then((rs) => {
-    //灰度检测
+    // Canary detection
     return clientManager.chosenMan(rs.packageId, rs.rollout, clientUniqueId)
     .then((data)=>{
       if (!data) {

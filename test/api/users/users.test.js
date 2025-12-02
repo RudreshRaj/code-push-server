@@ -18,7 +18,7 @@ describe('api/users/users.test.js', function() {
       .send()
       .end(function(err, res) {
         should.not.exist(err);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: "请您输入邮箱地址"});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: "Please enter your email address"});
         done();
       });
     });
@@ -41,7 +41,7 @@ describe('api/users/users.test.js', function() {
       .send({})
       .end(function(err, res) {
         should.not.exist(err);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: "请您输入邮箱地址"});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: "Please enter your email address"});
         done();
       });
     });
@@ -51,7 +51,7 @@ describe('api/users/users.test.js', function() {
       .send({email: accountExist})
       .end(function(err, res) {
         should.not.exist(err);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: `"${accountExist}" 已经注册过，请更换邮箱注册`});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: `"${accountExist}" already registered, please use a different email`});
         done();
       });
     });
@@ -87,7 +87,7 @@ describe('api/users/users.test.js', function() {
       .send()
       .end(function(err, res) {
         should.not.exist(err);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: `"${accountExist}" 已经注册过，请更换邮箱注册`});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: `"${accountExist}" already registered, please use a different email`});
         done();
       });
     });
@@ -97,7 +97,7 @@ describe('api/users/users.test.js', function() {
       .send()
       .end(function(err, res) {
         should.not.exist(err);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: `验证码已经失效，请您重新获取`});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: `Verification code has expired, please request a new one`});
         done();
       });
     });
@@ -107,7 +107,7 @@ describe('api/users/users.test.js', function() {
       .send()
       .end(function(err, res) {
         should.not.exist(err);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: `您输入的验证码不正确，请重新输入`});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: `The verification code you entered is incorrect, please try again`});
         done();
       });
     });
@@ -141,7 +141,7 @@ describe('api/users/users.test.js', function() {
       .send({email:account, password: '1234', token: storageToken})
       .end(function(err, res) {
         should.not.exist(err);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: `请您输入6～20位长度的密码`});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: `Please enter a password between 6-20 characters`});
         done();
       });
     });
@@ -194,7 +194,7 @@ describe('api/users/users.test.js', function() {
       .end(function(err, res) {
         should.not.exist(err);
         res.status.should.equal(200);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: `您输入的旧密码不正确，请重新输入`});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: `Your old password is incorrect, please try again`});
         done();
       });
     });
@@ -206,7 +206,7 @@ describe('api/users/users.test.js', function() {
       .end(function(err, res) {
         should.not.exist(err);
         res.status.should.equal(200);
-        JSON.parse(res.text).should.containEql({status:"ERROR", message: `请您输入6～20位长度的新密码`});
+        JSON.parse(res.text).should.containEql({status:"ERROR", message: `Please enter a new password between 6-20 characters`});
         done();
       });
     });

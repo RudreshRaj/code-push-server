@@ -33,7 +33,7 @@ router.get('/README.md', (req, res, next) => {
 });
 
 router.get('/tokens', (req, res) => {
-  res.render('tokens', { title: '获取token' });
+  res.render('tokens', { title: 'Get Token' });
 });
 
 router.get('/updateCheck', (req, res, next) => {
@@ -46,7 +46,7 @@ router.get('/updateCheck', (req, res, next) => {
   log.debug('req.query', req.query);
   clientManager.updateCheckFromCache(deploymentKey, appVersion, label, packageHash, clientUniqueId)
   .then((rs) => {
-    //灰度检测
+    // Canary detection
     return clientManager.chosenMan(rs.packageId, rs.rollout, clientUniqueId)
     .then((data)=>{
       if (!data) {
