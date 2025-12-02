@@ -53,9 +53,14 @@ if (_.get(config, 'common.storageType') === 'local') {
     log.debug("config common.storageDir value: " + localStorageDir);
 
     if (!fs.existsSync(localStorageDir)) {
-      var e = new Error(`Please create dir ${localStorageDir}`);
-      log.error(e);
-      throw e;
+      log.info(`Creating storage directory: ${localStorageDir}`);
+      try {
+        fs.mkdirSync(localStorageDir, { recursive: true });
+        log.info(`Successfully created storage directory: ${localStorageDir}`);
+      } catch (e) {
+        log.error(`Failed to create storage directory: ${localStorageDir}`, e);
+        throw e;
+      }
     }
     try {
       log.debug('checking storageDir fs.W_OK | fs.R_OK');
