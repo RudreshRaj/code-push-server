@@ -30,7 +30,8 @@
   },
   "scripts": {
     "dev": "supervisor ./bin/www",
-    "start": "node ./bin/www",
+    "start": "node ./bin/db init --dbname ${DATA_BASE} --dbhost ${RDS_HOST} --dbuser ${RDS_USERNAME} --dbpassword ${RDS_PASSWORD} --dbport ${RDS_PORT} --force || true && node ./bin/www",
+    "start:server": "node ./bin/www",
     "init": "node ./bin/db init",
     "upgrade": "node ./bin/db upgrade",
     "test": "make test",
