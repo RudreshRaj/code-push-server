@@ -5,7 +5,11 @@ nixPkgs = ['nodejs-18_x']
 cmds = ['npm ci']
 
 [phases.build]
-cmds = []
+cmds = ['mkdir -p /app/storage']
 
 [start]
 cmd = 'npm run start'
+
+[variables]
+STORAGE_DIR = '/app/storage'
+LOCAL_DOWNLOAD_URL = 'https://${{RAILWAY_PUBLIC_DOMAIN}}/download'
