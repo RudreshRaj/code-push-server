@@ -8,7 +8,7 @@ cmds = ['npm ci']
 cmds = ['mkdir -p /app/storage']
 
 [start]
-cmd = 'bash startup.sh'
+cmd = 'sh /app/startup.sh'
 
 [variables]
 STORAGE_DIR = '/app/storage'
